@@ -26,10 +26,13 @@ module.exports = function (obj) {
    */
 
   var emit = function (topic, values) {
-    obj.listeners(topic).map(function (cb) {
+    var listeners = obj.listeners(topic)
+    listeners.map(function (cb) {
       cb.apply(null, values)
     })
+    return listeners
   }
+
 
   /**
    * Listen event and execute given callback.
@@ -131,9 +134,9 @@ module.exports = function (obj) {
 
   obj.emit = function () {
     var args = [].slice.call(arguments)
-    emit(args.shift(), args)
+    var listeners = emit(args.shift(), args)
     emit('*', args)
-    return obj
+    return listeners.length > 0
   }
 
   /**
