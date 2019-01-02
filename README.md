@@ -5,7 +5,7 @@
   <a href="https://www.npmjs.org/package/zeroin"><img src="https://img.shields.io/npm/v/zeroin.svg?style=flat" alt="npm"></a>
   <a href="https://travis-ci.org/bredele/zeroin"><img src="https://travis-ci.org/bredele/zeroin.svg?branch=master" alt="travis"></a>
   <a href="https://david-dm.org/bredele/zeroin"><img src="https://david-dm.org/bredele/zeroin/status.svg" alt="dependencies Status"></a>
-  <a href='https://github.com/bredele/contributing-guide/blob/master/guidelines.m'><img src="https://bredele.github.io/contributing-guide/community-pledge.sv" alt="dependencies Status"></a>
+  <a href='https://github.com/bredele/contributing-guide/blob/master/guidelines.m'><img src="https://bredele.github.io/contributing-guide/community-pledge.svg"></a>
 </p>
 
 # zeroin
