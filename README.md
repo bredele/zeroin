@@ -1,7 +1,6 @@
-# zeroin
 
 <p align="center">
-  <img src="https://github.com/bredele/zeroin/blob/master/zeroin.png" width="300" height="300" alt="mitt">
+  <img src="https://github.com/bredele/zeroin/blob/master/zeroin.png" width="300" height="220" alt="mitt">
   <br>
   <a href="https://www.npmjs.org/package/zeroin"><img src="https://img.shields.io/npm/v/zeroin.svg?style=flat" alt="npm"></a>
   <a href="https://travis-ci.org/bredele/zeroin"><img src="https://travis-ci.org/bredele/zeroin.svg?branch=master" alt="travis"></a>
@@ -9,6 +8,7 @@
   <a href='https://github.com/bredele/contributing-guide/blob/master/guidelines.m'><img src="https://bredele.github.io/contributing-guide/community-pledge.sv" alt="dependencies Status"></a>
 </p>
 
+# zeroin
 
 Zeroin is a tiny functional event emitter made for the browser and 100% compatible with [Node's EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter).
 
