@@ -156,6 +156,7 @@ test('should prepend listener once to the beginning of the listeners array', ass
   emitter.on('hello', () => idx++)
   emitter.once('hello', () => assert.equal(idx, 0), true)
   emitter.emit('hello')
+  emitter.emit('hello')
 })
 
 test('should return array listing eevents for which the emitter has registered listeners', assert => {
@@ -185,11 +186,27 @@ test('should return the number of listetners listening to a given event', assert
   assert.equal(emitter.listenerCount('hello'), 1)
 })
 
-// test('should have same API than Nodejs event emitter', assert => {
-//   assert.plan(6)
-//   const emitter = pubsub()
-//   assert.equal(typeof emitter.removeAllListeners, 'function')
-//   assert.equal(typeof emitter.removeListener, 'function')
-//   assert.equal(typeof emitter.addListener, 'function')
-//   assert.equal(typeof emitter.removeEventListener, 'function')
-// })
+test('should have same API than Nodejs event emitter', assert => {
+  assert.plan(11)
+  const emitter = pubsub()
+  assert.equal(typeof emitter.removeAllListeners, 'function')
+  assert.equal(typeof emitter.removeListener, 'function')
+  assert.equal(typeof emitter.addListener, 'function')
+  assert.equal(typeof emitter.removeListener, 'function')
+  assert.equal(typeof emitter.prependListener, 'function')
+  assert.equal(typeof emitter.prependOnceListener, 'function')
+  assert.equal(typeof emitter.listeners, 'function')
+  assert.equal(typeof emitter.eventNames, 'function')
+  assert.equal(typeof emitter.listenerCount, 'function')
+  assert.equal(typeof emitter.setMaxListeners, 'function')
+  assert.equal(typeof emitter.getMaxListeners, 'function')
+})
+
+test('should support nodejs API', assert => {
+  assert.plan(3)
+  const emitter = pubsub()
+  emitter.addListener('hello', () => assert.ok('pass'))
+  emitter.prependOnceListener('hello', () => assert.ok('pass'))
+  emitter.emit('hello')
+  emitter.emit('hello')
+})

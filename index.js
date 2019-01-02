@@ -26,7 +26,7 @@ module.exports = function (obj) {
    */
 
   var emit = function (topic, values) {
-    (callbacks[topic] || []).map(function (cb) {
+    obj.listeners(topic).map(function (cb) {
       cb.apply(null, values)
     })
   }
@@ -44,7 +44,7 @@ module.exports = function (obj) {
    * @api public
    */
 
-  obj.on = function (topic, cb, prepend) {
+  obj.on = obj.addListener = function (topic, cb, prepend) {
     var listeners = callbacks[topic] = callbacks[topic] || []
     listeners.splice(prepend ? 0 : listeners.length, 0, cb)
     return obj
@@ -65,10 +65,10 @@ module.exports = function (obj) {
    * @api public
    */
 
-  obj.off = function (topic, cb) {
+  obj.off = obj.removeAllListeners = obj.removeListener = function (topic, cb) {
     var events = callbacks[topic]
     if (!topic) callbacks = {}
-    else if (cb) events.splice(events.indexOf(cb) >>> 0, 1)
+    else if (cb) events.splice(events.indexOf(cb), 1)
     else callbacks[topic] = []
     return obj
   }
@@ -139,9 +139,54 @@ module.exports = function (obj) {
     return (callbacks[name] || []).slice()
   }
 
+  /**
+   * Returns number of listeners for the event named
+   *
+   * @param {String} name
+   * @return {Number}
+   * @api public
+   */
+
   obj.listenerCount = function (name) {
     return obj.listeners(name).length
   }
+
+  /**
+   * PrependListener nodejs compatible.
+   *
+   * @param {String} topic
+   * @param {Function} cb
+   * @api public
+   */
+
+  obj.prependListener = function (topic, cb) {
+    return obj.on(topic, cb, true)
+  }
+
+  /**
+   * PrependOnceListener nodejs compatible.
+   *
+   * @param {String} topic
+   * @param {Function} cb
+   * @api public
+   */
+
+  obj.prependOnceListener = function (topic, cb) {
+    return obj.once(topic, cb, true)
+  }
+
+  /**
+   * Expose setMaxListeners and getMaxListeners for nodejs compatibility.
+   *
+   *
+   * @api public
+   */
+
+  obj.setMaxListeners = obj.getMaxListeners = function () {
+    return Infinity
+  }
+
+
 
   return obj
 }
