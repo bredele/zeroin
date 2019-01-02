@@ -40,11 +40,13 @@ module.exports = function (obj) {
    *
    * @param {String} topic
    * @param {Function} cb
+   * @param {Boolean?} prepend
    * @api public
    */
 
-  obj.on = function (topic, cb) {
-    (callbacks[topic] = callbacks[topic] || []).push(cb)
+  obj.on = function (topic, cb, prepend) {
+    var listeners = callbacks[topic] = callbacks[topic] || []
+    listeners.splice(prepend ? 0 : listeners.length, 0, cb)
     return obj
   }
 
@@ -80,15 +82,16 @@ module.exports = function (obj) {
    *
    * @param {String} topic
    * @param {Function} cb
+   * @param {Boolean?} prepend
    * @api public
    */
 
-  obj.once = function (topic, cb) {
+  obj.once = function (topic, cb, prepend) {
     var fn = function () {
       cb.apply(null, arguments)
       obj.off(topic, fn)
     }
-    obj.on(topic, fn)
+    obj.on(topic, fn, prepend)
     return obj
   }
 

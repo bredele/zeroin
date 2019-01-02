@@ -139,3 +139,31 @@ test('should listen on all events with * wildcard', assert => {
   emitter.emit('hello')
   emitter.emit('world')
 })
+
+test('should prepend listener to the beginning of the listeners array', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  let idx = 0
+  emitter.on('hello', () => idx++)
+  emitter.on('hello', () => assert.equal(idx, 0), true)
+  emitter.emit('hello')
+})
+
+test('should prepend listener once to the beginning of the listeners array', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  let idx = 0
+  emitter.on('hello', () => idx++)
+  emitter.once('hello', () => assert.equal(idx, 0), true)
+  emitter.emit('hello')
+})
+
+
+// test('should have same API than Nodejs event emitter', assert => {
+//   assert.plan(6)
+//   const emitter = pubsub()
+//   assert.equal(typeof emitter.removeAllListeners, 'function')
+//   assert.equal(typeof emitter.removeListener, 'function')
+//   assert.equal(typeof emitter.addListener, 'function')
+//   assert.equal(typeof emitter.removeEventListener, 'function')
+// })
