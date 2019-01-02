@@ -7,7 +7,11 @@ module.exports = function () {
     once: function (topic, cb) {
 
     },
-    off: function () {},
+    off: function (topic, cb) {
+      var events = callbacks[topic]
+      if (cb) events.splice(events.indexOf(cb) >>> 0, 1)
+      else callbacks[topic] = []
+    },
     emit: function () {
       var args = [].slice.call(arguments)
       callbacks[args.shift()].map(function (cb) {

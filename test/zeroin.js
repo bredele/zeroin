@@ -47,6 +47,26 @@ test('should emit event and listen/catch event arguments', assert => {
   emitter.emit('hello', 'world', 'foo', 'bar')
 })
 
+test('remove event listener', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  const fn = () => assert.fail('fail')
+  emitter.on('hello', fn)
+  emitter.off('hello', fn)
+  emitter.emit('hello')
+  assert.ok('pass')
+})
+
+test('should remove all event listeners for a given topic', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  emitter.on('hello', () => assert.fail('fail'))
+  emitter.on('hello', () => assert.fail('fail'))
+  emitter.off('hello')
+  emitter.emit('hello')
+  assert.ok('pass')
+})
+
 // test('should emit and listen event once', assert => {
 //   assert.plan(1)
 //   const emitter = pubsub()
