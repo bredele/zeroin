@@ -1,6 +1,11 @@
 module.exports = function (obj) {
   obj = obj || {}
   var callbacks = {}
+  var emit = function (topic, values) {
+    (callbacks[topic] || []).map(function (cb) {
+      cb.apply(null, values)
+    })
+  }
   obj.on = function (topic, cb) {
     (callbacks[topic] = callbacks[topic] || []).push(cb)
     return obj
@@ -22,10 +27,8 @@ module.exports = function (obj) {
   }
   obj.emit = function () {
     var args = [].slice.call(arguments)
-    var events = callbacks[args.shift()] || []
-    events.map(function (cb) {
-      cb.apply(null, args)
-    })
+    emit(args.shift(), args)
+    emit('*', args)
     return obj
   }
   return obj

@@ -131,3 +131,11 @@ test('should return emitter to allow chaining', assert => {
     .off('hello')
     .emit('hello')
 })
+
+test('should listen on all events with * wildcard', assert => {
+  assert.plan(2)
+  const emitter = pubsub()
+  emitter.on('*', () => assert.ok('pass'))
+  emitter.emit('hello')
+  emitter.emit('world')
+})
