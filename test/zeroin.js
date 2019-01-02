@@ -126,20 +126,6 @@ test('emit should return true if event had listeners, false otherwise', assert =
   assert.equal(emitter.emit('hello'), true)
 })
 
-// test('should return emitter to allow chaining', assert => {
-//   assert.plan(5)
-//   const emitter = pubsub()
-//   assert.equal(emitter.on(), emitter)
-//   assert.equal(emitter.once(), emitter)
-//   assert.equal(emitter.off(), emitter)
-//   assert.equal(emitter.emit(), emitter)
-//   emitter.on('hello', () => assert.ok('pass'))
-//     .emit('hello')
-//     .once('hello', () => assert.fail('fail'))
-//     .off('hello')
-//     .emit('hello')
-// })
-
 test('should listen on all events with * wildcard', assert => {
   assert.plan(2)
   const emitter = pubsub()
