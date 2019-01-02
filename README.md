@@ -9,12 +9,12 @@
 Zeroin is a tiny functional event emitter made for the browser and 100% compatible with [Node's EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter).
 
 -   **Functional:** methods don't rely on `this`
--   **Compatible:** exact [same API](https://nodejs.org/api/events.html#events_class_eventemitter) than Nodejs event emitters
+-   **Compatible:** exact same API than Nodejs event emitters
 -   **Asynchronous:** create promises from a listener
 -   **Useful:** use the wildcard `"*"` to listens for all events
 -   **Small:** weighs less than 800 bytes gzipped
 
-Zeroin has no dependencies and works in all mainstream browsers, included IE9+
+Zeroin has no dependencies and works in all mainstream browsers, included IE9+.
 
 ## Usage
 
@@ -27,16 +27,24 @@ const zeroin = require('zeroin')
 const emitter = zeroin()
 
 // listen to an event
-emitter.on('hello', value => console.log(value))
+var handler = value => console.log(value)
+emitter.on('hello', handler)
 
 // listen to an event once
-emitter.once('hello', value => console.log(value))
+emitter.once('hello', handler)
 
 // listen to all events
 emitter.on('*', (type, value) => console.log(type, value))
 
 // emit an event
 emitter.emit('hello', 'world')
+
+// remove all listeners for a given type
+emitter.off('hello')
+// remove specific listener
+emitter.off('hello', handler)
+// remove all listeners
+emitter.off()
 
 ```
 
