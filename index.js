@@ -9,12 +9,14 @@ module.exports = function () {
     },
     off: function (topic, cb) {
       var events = callbacks[topic]
-      if (cb) events.splice(events.indexOf(cb) >>> 0, 1)
+      if (!topic) callbacks = {}
+      else if (cb) events.splice(events.indexOf(cb) >>> 0, 1)
       else callbacks[topic] = []
     },
     emit: function () {
       var args = [].slice.call(arguments)
-      callbacks[args.shift()].map(function (cb) {
+      var events = callbacks[args.shift()] || []
+      events.map(function (cb) {
         cb.apply(null, args)
       })
     }

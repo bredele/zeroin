@@ -67,6 +67,25 @@ test('should remove all event listeners for a given topic', assert => {
   assert.ok('pass')
 })
 
+test('should not remove liteners if does not exist', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  emitter.off('what')
+  emitter.emit('what')
+  assert.ok('pass')
+})
+
+test('should remove all event listeners', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  emitter.on('hello', () => assert.fail('fail'))
+  emitter.on('world', () => assert.fail('fail'))
+  emitter.off()
+  emitter.emit('hello')
+  emitter.emit('world')
+  assert.ok('pass')
+})
+
 // test('should emit and listen event once', assert => {
 //   assert.plan(1)
 //   const emitter = pubsub()
