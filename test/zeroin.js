@@ -167,6 +167,23 @@ test('should return array listing eevents for which the emitter has registered l
   assert.deepEqual(emitter.eventNames(), ['hello', 'bar'])
 })
 
+test('should return a copy of the array of listeners for a given event', assert => {
+  assert.plan(2)
+  const emitter = pubsub()
+  const fn = function () {}
+  assert.deepEqual(emitter.listeners(), [])
+  emitter.on('hello', fn)
+  assert.equal(emitter.listeners('hello')[0], fn)
+})
+
+test('should return the number of listetners listening to a given event', assert => {
+  assert.plan(2)
+  const emitter = pubsub()
+  const fn = function () {}
+  assert.deepEqual(emitter.listenerCount('hello'), 0)
+  emitter.on('hello', fn)
+  assert.equal(emitter.listenerCount('hello'), 1)
+})
 
 // test('should have same API than Nodejs event emitter', assert => {
 //   assert.plan(6)

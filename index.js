@@ -116,8 +116,31 @@ module.exports = function (obj) {
     return obj
   }
 
+  /**
+   * Return Array of events for which the emitter hs registered events.
+   *
+   * @return {Array}
+   * @api public
+   */
+
   obj.eventNames = function () {
     return Object.keys(callbacks)
+  }
+
+  /**
+   * Returns a copy of the array of listeners for the event named
+   *
+   * @param {String} name
+   * @return {Array}
+   * @api public
+   */
+
+  obj.listeners = function (name) {
+    return (callbacks[name] || []).slice()
+  }
+
+  obj.listenerCount = function (name) {
+    return obj.listeners(name).length
   }
 
   return obj
