@@ -1,6 +1,5 @@
 # zeroin
 
-
 [![Build Status](https://travis-ci.org/bredele/zeroin.svg?branch=master)](https://travis-ci.org/bredele/zeroin)
  [![NPM](https://img.shields.io/npm/v/zeroin.svg)](https://www.npmjs.com/package/zeroin)
  [![Downloads](https://img.shields.io/npm/dm/zeroin.svg)](http://npm-stat.com/charts.html?package=zeroin)
