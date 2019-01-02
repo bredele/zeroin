@@ -8,9 +8,9 @@
 
 Zeroin is a tiny functional event emitter made for the browser and 100% compatible with [Node's EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter).
 
--   **Functional:** methods don't rely on `this`<sup>1</sup>
--   **Compatible:** exact same API than Nodejs event emitters<sup>2</sup>
--   **Asynchronous:** create promises from a listener <sup>3</sup>
+-   **Functional:** methods don't rely on `this`
+-   **Compatible:** exact [same API](https://nodejs.org/api/events.html#events_class_eventemitter) than Nodejs event emitters
+-   **Asynchronous:** create promises from a listener
 -   **Useful:** use the wildcard `"*"` to listens for all events
 -   **Small:** weighs less than 800 bytes gzipped
 
@@ -18,9 +18,54 @@ Zeroin has no dependencies and works in all mainstream browsers, included IE9+
 
 ## Usage
 
+Basic API.
+
 ```js
-const emitter = require('zeroin')
+const zeroin = require('zeroin')
+
+// create new event emitter
+const emitter = zeroin()
+
+// listen to an event
+emitter.on('hello', value => console.log(value))
+
+// listen to an event once
+emitter.once('hello', value => console.log(value))
+
+// listen to all events
+emitter.on('*', (type, value) => console.log(type, value))
+
+// emit an event
+emitter.emit('hello', 'world')
+
 ```
+
+What makes zeroin special.
+
+```js
+
+const emitter = {}
+
+// mixin object with zeroin API
+zeroin(emitter)
+
+// listen to an event and pass all the values associated to it
+emitter.on('hello', (...values) => console.log(...values))
+
+// prepend listener with .on or .once
+emitter.on('hello', () => console.log('do something'), true)
+emitter.once('hello', () => console.log('do something'), true)
+
+// promises can be created from .on or .once
+emitter.on('hello').then((...values) => console.log(...values))
+emitter.once('hello').then((...values) => console.log(...values))
+
+
+// emit an event and pass multiple values
+emitter.emit('hello', 'world', 'universe')
+
+```
+
 
 ## Installation
 
@@ -29,8 +74,6 @@ npm install zeroin --save
 ```
 
 [![NPM](https://nodei.co/npm/zeroin.png)](https://nodei.co/npm/zeroin/)
-
-## Why an other event emitter ?
 
 
 ## Question
