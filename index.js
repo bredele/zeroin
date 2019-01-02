@@ -134,8 +134,9 @@ module.exports = function (obj) {
 
   obj.emit = function () {
     var args = [].slice.call(arguments)
-    var listeners = emit(args.shift(), args)
-    emit('*', args)
+    var type = args.shift()
+    var listeners = emit(type, args)
+    emit('*', [type].concat(args))
     return listeners.length > 0
   }
 

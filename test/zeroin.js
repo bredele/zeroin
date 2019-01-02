@@ -129,7 +129,10 @@ test('emit should return true if event had listeners, false otherwise', assert =
 test('should listen on all events with * wildcard', assert => {
   assert.plan(2)
   const emitter = pubsub()
-  emitter.on('*', () => assert.ok('pass'))
+  var events = ['hello', 'world']
+  emitter.on('*', (type, value) => {
+    assert.equal(type, events.shift())
+  })
   emitter.emit('hello')
   emitter.emit('world')
 })
