@@ -4,11 +4,13 @@ module.exports = function () {
     on: function (topic, cb) {
       (callbacks[topic] = callbacks[topic] || []).push(cb)
     },
-    once: function () {},
+    once: function (topic, cb) {
+
+    },
     off: function () {},
-    emit: function (topic) {
+    emit: function (topic, value) {
       callbacks[topic].map(function (cb) {
-        cb()
+        cb(value)
       })
     }
   }

@@ -28,3 +28,18 @@ test('should emit and listen event multiple times', assert => {
   emitter.on('hello', () => assert.ok('pass'))
   emitter.emit('hello')
 })
+
+test('should emit event and listen/catch value', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  emitter.on('hello', (value) => assert.equal(value, 'world'))
+  emitter.emit('hello', 'world')
+})
+
+// test('should emit and listen event once', assert => {
+//   assert.plan(1)
+//   const emitter = pubsub()
+//   emitter.once('hello', () => assert.ok('pass'))
+//   emitter.emit('hello')
+//   emitter.emit('hello')
+// })
