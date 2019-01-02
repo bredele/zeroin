@@ -86,10 +86,10 @@ test('should remove all event listeners', assert => {
   assert.ok('pass')
 })
 
-// test('should emit and listen event once', assert => {
-//   assert.plan(1)
-//   const emitter = pubsub()
-//   emitter.once('hello', () => assert.ok('pass'))
-//   emitter.emit('hello')
-//   emitter.emit('hello')
-// })
+test('should emit and listen event once', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  emitter.once('hello', () => assert.ok('pass'))
+  emitter.emit('hello')
+  emitter.emit('hello')
+})
