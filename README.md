@@ -1,9 +1,14 @@
 # zeroin
 
-[![Build Status](https://travis-ci.org/bredele/zeroin.svg?branch=master)](https://travis-ci.org/bredele/zeroin)
- [![NPM](https://img.shields.io/npm/v/zeroin.svg)](https://www.npmjs.com/package/zeroin)
- [![Downloads](https://img.shields.io/npm/dm/zeroin.svg)](http://npm-stat.com/charts.html?package=zeroin)
- [![pledge](https://bredele.github.io/contributing-guide/community-pledge.svg)](https://github.com/bredele/contributing-guide/blob/master/guidelines.md)
+<p align="center">
+  <img src="https://github.com/bredele/zeroin/blob/master/zeroin.png" width="300" height="300" alt="mitt">
+  <br>
+  <a href="https://www.npmjs.org/package/zeroin"><img src="https://img.shields.io/npm/v/zeroin.svg?style=flat" alt="npm"></a>
+  <a href="https://travis-ci.org/bredele/zeroin"><img src="https://travis-ci.org/bredele/zeroin.svg?branch=master" alt="travis"></a>
+  <a href="https://david-dm.org/bredele/zeroin"><img src="https://david-dm.org/bredele/zeroin/status.svg" alt="dependencies Status"></a>
+  <a href='https://github.com/bredele/contributing-guide/blob/master/guidelines.m'><img src="https://bredele.github.io/contributing-guide/community-pledge.sv" alt="dependencies Status"></a>
+</p>
+
 
 Zeroin is a tiny functional event emitter made for the browser and 100% compatible with [Node's EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter).
 
