@@ -117,3 +117,12 @@ test('should mixin object with emitter', assert => {
   obj.on('hello', () => assert.ok('pass'))
   obj.emit('hello')
 })
+
+test('should return emitter to allow chaining', assert => {
+  assert.plan(4)
+  const emitter = pubsub()
+  assert.equal(emitter.on(), emitter)
+  assert.equal(emitter.once(), emitter)
+  assert.equal(emitter.off(), emitter)
+  assert.equal(emitter.emit(), emitter)
+})
