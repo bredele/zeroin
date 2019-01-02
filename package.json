@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/bredele/zeroin/issues"
   },
-  "homepage": "https://github.com/bredele/zeroin#readme"
+  "homepage": "https://github.com/bredele/zeroin#readme",
+  "devDependencies": {
+    "tape": "^4.9.2"
+  }
 }
