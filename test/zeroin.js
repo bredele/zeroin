@@ -210,3 +210,11 @@ test('should support nodejs API', assert => {
   emitter.emit('hello')
   emitter.emit('hello')
 })
+
+test('should return promise if listener not specified', assert => {
+  assert.plan(1)
+  const emitter = pubsub()
+  emitter.once('hello').then(() => assert.ok('pass'))
+  emitter.emit('hello')
+  emitter.emit('hello')
+})

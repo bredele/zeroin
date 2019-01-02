@@ -87,12 +87,18 @@ module.exports = function (obj) {
    */
 
   obj.once = function (topic, cb, prepend) {
-    var fn = function () {
-      cb.apply(null, arguments)
-      obj.off(topic, fn)
+    if (cb) {
+      var fn = function () {
+        cb.apply(null, arguments)
+        obj.off(topic, fn)
+      }
+      obj.on(topic, fn, prepend)
+      return obj
+    } else {
+      return new Promise(function (resolve) {
+        obj.once(topic, resolve)
+      })
     }
-    obj.on(topic, fn, prepend)
-    return obj
   }
 
   /**
@@ -178,15 +184,12 @@ module.exports = function (obj) {
   /**
    * Expose setMaxListeners and getMaxListeners for nodejs compatibility.
    *
-   *
    * @api public
    */
 
   obj.setMaxListeners = obj.getMaxListeners = function () {
     return Infinity
   }
-
-
 
   return obj
 }
