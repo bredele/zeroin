@@ -36,6 +36,17 @@ test('should emit event and listen/catch value', assert => {
   emitter.emit('hello', 'world')
 })
 
+test('should emit event and listen/catch event arguments', assert => {
+  assert.plan(3)
+  const emitter = pubsub()
+  emitter.on('hello', (world, foo, bar) => {
+    assert.equal(world, 'world')
+    assert.equal(foo, 'foo')
+    assert.equal(bar, 'bar')
+  })
+  emitter.emit('hello', 'world', 'foo', 'bar')
+})
+
 // test('should emit and listen event once', assert => {
 //   assert.plan(1)
 //   const emitter = pubsub()

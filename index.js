@@ -8,9 +8,10 @@ module.exports = function () {
 
     },
     off: function () {},
-    emit: function (topic, value) {
-      callbacks[topic].map(function (cb) {
-        cb(value)
+    emit: function () {
+      var args = [].slice.call(arguments)
+      callbacks[args.shift()].map(function (cb) {
+        cb.apply(null, args)
       })
     }
   }
