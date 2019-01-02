@@ -1,0 +1,30 @@
+{
+  "name": "zeroin",
+  "version": "1.0.0",
+  "description": "Tiny Event Emitter done the right way",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bredele/zeroin.git"
+  },
+  "keywords": [
+    "event",
+    "emitter",
+    "pubsub",
+    "subscribe",
+    "listen",
+    "watch"
+  ],
+  "author": "Olivier Wietrich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bredele/zeroin/issues"
+  },
+  "homepage": "https://github.com/bredele/zeroin#readme"
+}
