@@ -93,3 +93,15 @@ test('should emit and listen event once', assert => {
   emitter.emit('hello')
   emitter.emit('hello')
 })
+
+test('should emit event and listen/catch event arguments once', assert => {
+  assert.plan(3)
+  const emitter = pubsub()
+  emitter.once('hello', (world, foo, bar) => {
+    assert.equal(world, 'world')
+    assert.equal(foo, 'foo')
+    assert.equal(bar, 'bar')
+  })
+  emitter.emit('hello', 'world', 'foo', 'bar')
+  emitter.emit('hello', 'beep', 'boop')
+})
