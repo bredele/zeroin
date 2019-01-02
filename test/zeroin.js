@@ -105,3 +105,15 @@ test('should emit event and listen/catch event arguments once', assert => {
   emitter.emit('hello', 'world', 'foo', 'bar')
   emitter.emit('hello', 'beep', 'boop')
 })
+
+test('should mixin object with emitter', assert => {
+  assert.plan(5)
+  const obj = {}
+  pubsub(obj)
+  assert.equal(typeof obj.emit, 'function')
+  assert.equal(typeof obj.on, 'function')
+  assert.equal(typeof obj.once, 'function')
+  assert.equal(typeof obj.off, 'function')
+  obj.on('hello', () => assert.ok('pass'))
+  obj.emit('hello')
+})
