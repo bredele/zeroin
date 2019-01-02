@@ -45,9 +45,11 @@ module.exports = function (obj) {
    */
 
   obj.on = obj.addListener = function (topic, cb, prepend) {
-    var listeners = callbacks[topic] = callbacks[topic] || []
-    listeners.splice(prepend ? 0 : listeners.length, 0, cb)
-    return obj
+    if (typeof cb === 'function') {
+      var listeners = callbacks[topic] = callbacks[topic] || []
+      listeners.splice(prepend ? 0 : listeners.length, 0, cb)
+      return obj
+    } else return obj.promise(topic, !!cb)
   }
 
   /**
@@ -87,18 +89,30 @@ module.exports = function (obj) {
    */
 
   obj.once = function (topic, cb, prepend) {
-    if (cb) {
+    if (typeof cb === 'function') {
       var fn = function () {
         cb.apply(null, arguments)
         obj.off(topic, fn)
       }
       obj.on(topic, fn, prepend)
       return obj
-    } else {
-      return new Promise(function (resolve) {
-        obj.once(topic, resolve)
-      })
     }
+    return obj.promise(topic, !!cb)
+  }
+
+  /**
+   * Create promise listener for given event name.
+   *
+   * @param {String} topic
+   * @param {Boolean} prepend
+   * @return {Promise}
+   * @api public
+   */
+
+  obj.promise = function (topic, prepend) {
+    return new Promise(function (resolve) {
+      obj.once(topic, resolve, prepend)
+    })
   }
 
   /**
