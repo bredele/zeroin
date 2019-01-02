@@ -158,6 +158,15 @@ test('should prepend listener once to the beginning of the listeners array', ass
   emitter.emit('hello')
 })
 
+test('should return array listing eevents for which the emitter has registered listeners', assert => {
+  assert.plan(2)
+  const emitter = pubsub()
+  assert.deepEqual(emitter.eventNames(), [])
+  emitter.on('hello', function () {})
+  emitter.on('bar', function () {})
+  assert.deepEqual(emitter.eventNames(), ['hello', 'bar'])
+})
+
 
 // test('should have same API than Nodejs event emitter', assert => {
 //   assert.plan(6)

@@ -116,5 +116,9 @@ module.exports = function (obj) {
     return obj
   }
 
+  obj.eventNames = function () {
+    return Object.keys(callbacks)
+  }
+
   return obj
 }
