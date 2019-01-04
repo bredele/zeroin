@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://github.com/bredele/zeroin/blob/master/zeroin.png" width="300" height="220" alt="mitt">
+  <img src="https://github.com/bredele/zeroin/blob/master/zeroin.png" width="300" height="220" alt="zeroin">
   <br>
   <a href="https://www.npmjs.org/package/zeroin"><img src="https://img.shields.io/npm/v/zeroin.svg?style=flat" alt="npm"></a>
   <a href="https://travis-ci.org/bredele/zeroin"><img src="https://travis-ci.org/bredele/zeroin.svg?branch=master" alt="travis"></a>
